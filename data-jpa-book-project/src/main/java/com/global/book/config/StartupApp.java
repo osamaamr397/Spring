@@ -34,17 +34,17 @@ public class StartupApp implements CommandLineRunner {
             Book book = new Book();
             book.setName("Java JPA");
             book.setPrice(200);
-            book.setAuther(autherService.findById(1L));
+            book.setAuther(autherService.getById(1L));
 
             Book book2 = new Book();
             book2.setName("Data Base Mysql");
             book2.setPrice(300);
-            book2.setAuther(autherService.findById(1L));
+            book2.setAuther(autherService.getById(1L));
 
             Book book3 = new Book();
             book3.setName("Python");
             book3.setPrice(120);
-            book3.setAuther(autherService.findById(2L));
+            book3.setAuther(autherService.getById(2L));
 
 
             bookService.insertAll(Arrays.asList(book, book2, book3));

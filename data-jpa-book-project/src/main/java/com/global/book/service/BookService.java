@@ -40,4 +40,9 @@ public class BookService {
         bookRepo.deleteById(id);
     }
 
+    public int deleteByAuthorId(Long id){
+        return bookRepo.deleteByAuthorId(id);
+
+    }
+
 }

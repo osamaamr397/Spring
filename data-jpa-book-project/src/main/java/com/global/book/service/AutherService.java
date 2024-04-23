@@ -13,6 +13,7 @@ public class AutherService {
     private AutherRepo autherRepo;
     @Autowired
     AutherService(AutherRepo autherRepo){
+        super();
         this.autherRepo=autherRepo;
     }
     public Auther findById(Long id){
@@ -37,6 +38,9 @@ public class AutherService {
     }
     public void deleteById(Long id){
         autherRepo.deleteById(id);
+    }
+    public Auther getById(Long id){
+        return autherRepo.getById(id);
     }
 
 }

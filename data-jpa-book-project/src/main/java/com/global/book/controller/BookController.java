@@ -1,6 +1,7 @@
 package com.global.book.controller;
 
 import com.global.book.entity.Book;
+import com.global.book.entity.BookDto;
 import com.global.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,15 @@ public class BookController {
         super();
         this.bookService=bookService;
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
-        return  ResponseEntity.ok(bookService.findById(id));
+        Book book=bookService.findById(id);
+        BookDto dto=new BookDto();
+        dto.setId(book.getId());
+        dto.setName(book.getName());
+        dto.setPrice(book.getPrice());
+        dto.setAuther(book.getAuther());
+        return  ResponseEntity.ok(dto);
     }
     @GetMapping("/")
     public ResponseEntity<?> findAll(){
@@ -34,6 +41,10 @@ public class BookController {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         bookService.deleteById(id);
         return ResponseEntity.ok(null);
+    }
+    @DeleteMapping("/auther/{id}")
+    public ResponseEntity<?> deleteByAuthorId(@PathVariable Long id){
+        return ResponseEntity.ok(bookService.deleteByAuthorId(id));
     }
 
 

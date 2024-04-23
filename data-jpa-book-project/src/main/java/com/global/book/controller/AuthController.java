@@ -16,7 +16,7 @@ public class AuthController {
         super();
         this.autherService=autherService;
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
       return  ResponseEntity.ok(autherService.findById(id));
     }
@@ -28,7 +28,7 @@ public class AuthController {
     public ResponseEntity<?> insert(Auther entity){
         return ResponseEntity.ok(autherService.insert(entity));
     }
-    @PostMapping("")
+    @PutMapping("")
     public ResponseEntity<?> update(@RequestBody Auther entity){
         return ResponseEntity.ok(autherService.update(entity));
     }
