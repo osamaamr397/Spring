@@ -1,5 +1,6 @@
 package com.global.book.repository;
 
+import com.global.book.base.BaseRepository;
 import com.global.book.entity.Book;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepo extends JpaRepository<Book,Long> {
+public interface BookRepo extends BaseRepository<Book,Long> {
     @Override
     @EntityGraph(value = "loadAuther")
     Optional<Book> findById(Long id);

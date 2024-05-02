@@ -2,6 +2,7 @@ package com.global.book.controller;
 
 import com.global.book.entity.Auther;
 import com.global.book.service.AutherService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,12 @@ public class AuthController {
     public ResponseEntity<?> findAll(){
       return ResponseEntity.ok(autherService.findAll());
     }
-    @GetMapping()
-    public ResponseEntity<?> insert(Auther entity){
+    @PostMapping()
+    public ResponseEntity<?> insert(@RequestBody @Valid Auther entity){
         return ResponseEntity.ok(autherService.insert(entity));
     }
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody Auther entity){
+    public ResponseEntity<?> update(@RequestBody @Valid Auther entity){
         return ResponseEntity.ok(autherService.update(entity));
     }
     @DeleteMapping("/{id}")

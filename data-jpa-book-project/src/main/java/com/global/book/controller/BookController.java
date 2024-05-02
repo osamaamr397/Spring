@@ -3,9 +3,13 @@ package com.global.book.controller;
 import com.global.book.entity.Book;
 import com.global.book.entity.BookDto;
 import com.global.book.service.BookService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+@Validated
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -16,7 +20,7 @@ public class BookController {
         this.bookService=bookService;
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable @Min(value = 10) Long id){
         Book book=bookService.findById(id);
         BookDto dto=new BookDto();
         dto.setId(book.getId());
@@ -29,13 +33,21 @@ public class BookController {
     public ResponseEntity<?> findAll(){
         return ResponseEntity.ok(bookService.findAll());
     }
-    @GetMapping()
-    public ResponseEntity<?> insert(Book entity){
-        return ResponseEntity.ok(bookService.insert(entity));
+    @PostMapping()
+    public ResponseEntity<?> insert(@RequestBody @Valid BookDto entity){
+        Book book=new Book();
+        book.setName(entity.getName());
+        book.setPrice(entity.getPrice());
+        book.setAuther(entity.getAuther());
+        return ResponseEntity.ok(bookService.insert(book));
     }
-    @PostMapping("")
-    public ResponseEntity<?> update(@RequestBody Book entity){
-        return ResponseEntity.ok(bookService.update(entity));
+    @PutMapping("")
+    public ResponseEntity<?> update(@RequestBody @Valid BookDto entity){
+        Book book=new Book();
+        book.setName(entity.getName());
+        book.setPrice(entity.getPrice());
+        book.setAuther(entity.getAuther());
+        return ResponseEntity.ok(bookService.update(book));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){

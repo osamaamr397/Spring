@@ -4,6 +4,7 @@ package com.global.book.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.global.book.base.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.Formula;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,11 +19,17 @@ import java.time.LocalDateTime;
 @Table(name = "books")
 public class Book extends BaseEntity<Long> {
 
+    @NotNull(message = "Should be enter the book name")
+    @NotEmpty()//to restrict empty char
+    @NotBlank()//to restrict white spaces
     @Column(name = "name")
     private String name;
+    @Min(value = 5)
+    @Max(value = 500)
     @Column(name = "price")
 
     private double price;
+    @NotNull
     @JsonBackReference //to stop the infinity loop
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auther_id")

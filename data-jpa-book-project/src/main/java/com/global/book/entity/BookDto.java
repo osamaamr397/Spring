@@ -2,14 +2,22 @@ package com.global.book.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public class BookDto {
 
     private Long id;
 
+    @NotBlank
     private String name;
+    @Min(value = 5)
+    @Max(value = 500)
     private double price;
+    @NotNull
     private Auther auther;
 
     public Auther getAuther() {

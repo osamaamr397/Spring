@@ -16,6 +16,7 @@ public abstract class BaseEntity<ID> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
+    private String statusCode;
     @CreatedBy
     private String createdBy;
     @CreatedDate
