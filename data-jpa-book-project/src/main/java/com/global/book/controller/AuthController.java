@@ -1,6 +1,8 @@
 package com.global.book.controller;
 
+import com.global.book.base.BaseRepository;
 import com.global.book.entity.Auther;
+import com.global.book.entity.AutherSearch;
 import com.global.book.service.AutherService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,10 @@ public class AuthController {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
          autherService.deleteById(id);
         return ResponseEntity.ok(null);
+    }
+    @PostMapping("/spec")
+    public ResponseEntity<?>findByAutherSpec(@RequestBody AutherSearch search){
+       return ResponseEntity.ok(autherService.findByAuthSpec(search));
     }
 
 }

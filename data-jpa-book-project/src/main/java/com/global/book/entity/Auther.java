@@ -3,6 +3,7 @@ package com.global.book.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.global.book.base.BaseEntity;
+import com.global.book.validator.IpAddress;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.annotations.Formula;
@@ -24,7 +25,8 @@ public class Auther extends BaseEntity<Long> {
     @NotEmpty()//to restrict empty char
     @NotBlank()//to restrict white spaces
     private String name;
-    @Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+   // @Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+    @IpAddress(message = "should be enter valid ip address")
     private String ipAddress;
 
     @Email
